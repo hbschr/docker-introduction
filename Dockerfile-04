@@ -1,0 +1,9 @@
+FROM python:alpine
+
+EXPOSE 5000
+
+RUN pip3 install flask gunicorn
+
+COPY server.py /server.py
+
+CMD ["gunicorn", "-w 3", "-b :5000", "server:app"]
